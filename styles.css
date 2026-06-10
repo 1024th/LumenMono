@@ -59,21 +59,24 @@ main {
   cursor: pointer;
 }
 
-.control-group,
-.control-switch,
-.controls fieldset {
-  margin: var(--control-gap) 0 0;
+.control-group {
+  display: grid;
+  gap: var(--control-label-gap);
+  margin: var(--control-gap) 0 0 0;
 }
 
-.control-group label,
+.control-group > * {
+  margin: 0;
+}
+
+.control-group label:not(.control-switch),
 .control-label,
 .controls legend {
   display: block;
-  margin-bottom: var(--control-label-gap);
   color: var(--muted);
 }
 
-.control-group label {
+.control-group label:not(.control-switch) {
   display: flex;
   justify-content: space-between;
   gap: var(--space-sm);
@@ -175,7 +178,7 @@ main {
 
 .controls fieldset {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
   column-gap: var(--space-sm);
   row-gap: 0.45rem;
   padding: 0;
@@ -185,11 +188,8 @@ main {
 .controls fieldset legend {
   grid-column: 1 / -1;
   width: 100%;
+  margin: 0 0 var(--control-label-gap);
   padding: 0;
-}
-
-.controls fieldset .control-switch {
-  margin-bottom: 0;
 }
 
 .control-switch {
@@ -519,6 +519,7 @@ footer p {
   .page-shell {
     width: min(100% - var(--space-md), 720px);
   }
+
   .help-tip::after {
     left: 0;
     transform: translate(0, 0.2rem);
