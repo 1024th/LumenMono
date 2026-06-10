@@ -54,7 +54,6 @@ main {
 }
 
 .controls summary {
-  margin-bottom: var(--control-gap);
   color: var(--muted);
   cursor: pointer;
 }
@@ -62,7 +61,7 @@ main {
 .control-group,
 .control-switch,
 .controls fieldset {
-  margin: 0 0 var(--control-gap);
+  margin: var(--control-gap) 0 0;
 }
 
 .control-group label,
