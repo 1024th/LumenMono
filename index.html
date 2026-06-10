@@ -12,33 +12,105 @@
 </head>
 
 <body>
-  <main>
-    <header class="masthead">
-      <h1>Lumen Mono</h1>
-      <p class="lead">
-        A personal coding font derived from Iosevka.
-      </p>
-      <p class="links">
-        Github: <a href="https://github.com/1024th/LumenMono">Lumen Mono</a>,
-        <a href="https://github.com/be5invis/Iosevka">Iosevka</a>
-      </p>
-    </header>
+  <div class="page-shell">
+    <aside class="controls" aria-label="Specimen controls">
+      <h2>Controls</h2>
 
-    <section class="specimen" aria-label="Lumen Mono specimen">
-      <h2>Specimen</h2>
-      <p>Il1 0O oO {} [] () &lt;=&gt; != === -&gt; =&gt;</p>
-      <p>ABCDEFG HIJKLMN OPQRST UVWXYZ</p>
-      <p>abcdefg hijklmn opqrst uvwxyz</p>
-      <p>0123456789 _,.?/:;`~!@#$%^&*-=+</p>
-      <p>
-        <span style="font-weight: 300">light</span> regular <b>bold</b><br>
-        <span style="font-weight: 300; font-style: italic">light</span>
-        <span style="font-style: italic">italic</span>&ensp;&ensp;<span
-          style="font-weight: 700; font-style: italic">bold</span>
-      </p>
-      <p style="font-size: 1rem;">The minimum is less than or equal to the maximum</p>
-      <p style="font-size: 1rem; font-style: italic;">Keep the hot path small and the fallback explicit</p>
-      <pre data-shiki data-lang="ts"><code>function fib(n: number): number {
+      <div class="control-group">
+        <span class="control-label">Weight</span>
+        <div class="segmented-control" aria-label="Weight">
+          <label>
+            <input type="radio" name="font-weight" value="300" data-sample-control="weight" aria-label="Light" />
+            <span>Light</span>
+          </label>
+          <label>
+            <input type="radio" name="font-weight" value="400" data-sample-control="weight" aria-label="Regular"
+              checked />
+            <span>Regular</span>
+          </label>
+          <label>
+            <input type="radio" name="font-weight" value="700" data-sample-control="weight" aria-label="Bold" />
+            <span>Bold</span>
+          </label>
+        </div>
+      </div>
+
+      <label class="control-switch">
+        <span>Italic</span>
+        <input type="checkbox" data-sample-control="italic" />
+      </label>
+
+      <div class="control-group">
+        <label for="font-size">Size <output for="font-size" data-size-output>24px</output></label>
+        <input id="font-size" type="range" min="14" max="32" value="24" data-sample-control="size" />
+      </div>
+
+      <fieldset>
+        <legend>OpenType</legend>
+        <label class="control-switch">
+          <span class="feature-label">
+            <span class="feature-tag">calt</span>
+            <span class="help-tip" tabindex="0" aria-label="Contextual alternates"
+              data-help="Contextual alternates">?</span>
+          </span>
+          <input type="checkbox" data-feature="calt" checked />
+        </label>
+        <label class="control-switch">
+          <span class="feature-label">
+            <span class="feature-tag">dlig</span>
+            <span class="help-tip" tabindex="0" aria-label="Discretionary ligatures"
+              data-help="Discretionary ligatures">?</span>
+          </span>
+          <input type="checkbox" data-feature="dlig" />
+        </label>
+        <label class="control-switch">
+          <span class="feature-label">
+            <span class="feature-tag">zero</span>
+            <span class="help-tip" tabindex="0" aria-label="Slashed zero" data-help="Slashed zero">?</span>
+          </span>
+          <input type="checkbox" data-feature="zero" checked />
+        </label>
+        <label class="control-switch">
+          <span class="feature-label">
+            <span class="feature-tag">frac</span>
+            <span class="help-tip" tabindex="0" aria-label="Fractions" data-help="Fractions">?</span>
+          </span>
+          <input type="checkbox" data-feature="frac" />
+        </label>
+      </fieldset>
+
+    </aside>
+
+    <main>
+      <header class="masthead">
+        <h1>Lumen Mono</h1>
+        <p class="lead">
+          A personal coding font derived from Iosevka.
+        </p>
+        <p class="links">
+          Github: <a href="https://github.com/1024th/LumenMono">Lumen Mono</a>,
+          <a href="https://github.com/be5invis/Iosevka">Iosevka</a>
+        </p>
+      </header>
+
+      <section class="specimen" aria-label="Lumen Mono specimen">
+        <h2>Specimen</h2>
+        <p>Il1 0O oO 1/2 3/4 {} [] () &lt;=&gt; != === -&gt; =&gt;</p>
+        <p>ABCDEFG HIJKLMN OPQRST UVWXYZ<br>
+          abcdefg hijklmn opqrst uvwxyz
+        </p>
+        <p>0123456789 _,.?/:;`~!@#$%^&*-=+</p>
+        <p>
+          <span style="font-weight: 300">light</span> <span style="font-weight: 400;">regular</span> <b>bold</b><br>
+          <span style="font-weight: 300; font-style: italic">light</span>
+          <span style="font-weight: 400; font-style: italic">italic</span>&ensp;&ensp;<span
+            style="font-weight: 700; font-style: italic">bold</span>
+        </p>
+        <p>
+          The minimum is less than or equal to the maximum<br>
+          Keep the hot path small and the fallback explicit
+        </p>
+        <pre data-shiki data-lang="ts"><code>function fib(n: number): number {
   if (n <= 1) return n;
   return fib(n - 1) + fib(n - 2);
 }
@@ -49,114 +121,142 @@ function greet(name: string) {
 greet("world");
 </code></pre>
 
-      <pre data-shiki data-lang="coq"><code>From Coq Require Import ssreflect.
+        <pre data-shiki data-lang="coq"><code>From Coq Require Import ssreflect.
 
 (* ensure proofs are well-structured *)
 Set Default Goal Selector "!".
 #[global] Open Scope general_if_scope.
 
-Module list_playground.
-  (* Let's do a typical proof by induction: we'll define [list] as an inductive,
-     [app] (list append) as a recursive function, and prove that [app] is
-     associative. *)
-  Inductive list (A: Type) :=
-  | nil
-  | cons (x: A) (l: list A).
+(* Let's do a typical proof by induction:
+    we'll define [list] as an inductive,
+    [app] (list append) as a recursive function,
+    and prove that [app] is associative. *)
+Inductive list (A: Type) :=
+| nil
+| cons (x: A) (l: list A).
 
-  (* Fix up implicit arguments. *)
-  Arguments nil {A}.
-  Arguments cons {A} x l.
-  Notation "[]" := nil.
-  Infix "::" := cons.
+(* Fix up implicit arguments. *)
+Arguments nil {A}.
+Arguments cons {A} x l.
+Notation "[]" := nil.
+Infix "::" := cons.
 
-  Fixpoint app {A} (l1 l2: list A): list A :=
-    match l1 with
-    | [] => l2
-    | x :: l1 => x :: app l1 l2
-    end.
+Fixpoint app {A} (l1 l2: list A): list A :=
+  match l1 with
+  | [] => l2
+  | x :: l1 => x :: app l1 l2
+  end.
 
-  Infix "++" := app.
+Infix "++" := app.
 
-  Theorem app_assoc {A} (l1 l2 l3: list A) :
-    (l1 ++ l2) ++ l3 = l1 ++ (l2 ++ l3).
-  Proof.
-    induction l1 as [|x l1]; simpl.
-    - reflexivity.
-    - by rewrite IHl1.
-  Qed.
-End list_playground.</code></pre>
-    </section>
+Theorem app_assoc {A} (l1 l2 l3: list A) :
+  (l1 ++ l2) ++ l3 = l1 ++ (l2 ++ l3).
+Proof.
+  induction l1 as [|x l1]; simpl.
+  - reflexivity.
+  - by rewrite IHl1.
+Qed.</code></pre>
+      </section>
 
-    <section class="terminal-specimen" aria-label="Lumen Mono Term specimen">
-      <h2>Terminal Version</h2>
-      <p>
-        “Lumen Mono Term” makes terminal symbols strictly monospaced.
-      </p>
-      <div class="terminal-compare">
-        <div class="terminal-line terminal-regular">
-          <span>Mono</span>
-          <code>~/repo  main ⇡1  git status</code>
+      <section class="terminal-specimen" aria-label="Lumen Mono Term specimen">
+        <h2>Terminal Version</h2>
+        <p>
+          “Lumen Mono Term” makes terminal symbols strictly monospaced.
+        </p>
+        <div class="terminal-compare">
+          <div class="terminal-line terminal-regular">
+            <span>Mono</span>
+            <code>~/repo  main ⇡1  git status</code>
+          </div>
+          <div class="terminal-line terminal-term">
+            <span>Term</span>
+            <code>~/repo  main ⇡1  git status</code>
+          </div>
         </div>
-        <div class="terminal-line terminal-term">
-          <span>Term</span>
-          <code>~/repo  main ⇡1  git status</code>
-        </div>
-      </div>
-      <p>
-        Use the regular build “Lumen Mono” for editors, and “Lumen Mono Term” for terminal applications.
-      </p>
-    </section>
+        <p>
+          Use the regular build “Lumen Mono” for editors, and “Lumen Mono Term” for terminal applications.
+        </p>
+      </section>
 
-    <section class="notes" aria-label="Design notes">
-      <h2>Design Notes</h2>
-      <ul>
-        <li>
-          Iosevka's width is 500. Lumen Mono's width is 600, a common width
-          for monospaced fonts.
-        </li>
-        <li>
-          <b>Metrics</b> are adjusted to suit the 600 width.<br>
-          X-height is increased, cap height is reduced, and ascender height is increased.
-        </li>
-        <li>
-          Circular curves are <b>rounder</b>, like in <code>o</code>,
-          <code>e</code>, <code>a</code>, <code>s</code>, and
-          <code>c</code>.
-        </li>
-        <li>
-          <i>Italic</i> is based on <a href="https://www.ibm.com/plex/">IBM Plex Mono</a>'s humanist italic preset.
-        </li>
-        <li>
-          The neutral reading-first attitude is influenced by <a href="https://commitmono.com/">Commit Mono</a>.
-        </li>
-        <li>
-          The lowercase <code>l</code> keeps an asymmetric serif.<br>
-          Geometric shapes for digits, like in
-          <code>3</code>, <code>6</code>, and <code>9</code>.
-        </li>
-      </ul>
-    </section>
+      <section class="notes" aria-label="Design notes">
+        <h2>Design Notes</h2>
+        <ul>
+          <li>
+            Iosevka's width is 500. Lumen Mono's width is 600, a common width
+            for monospaced fonts.
+          </li>
+          <li>
+            <b>Metrics</b> are adjusted to suit the 600 width.<br>
+            X-height is increased, cap height is reduced, and ascender height is increased.
+          </li>
+          <li>
+            Circular curves are <b>rounder</b>, like in <code>o</code>,
+            <code>e</code>, <code>a</code>, <code>s</code>, and
+            <code>c</code>.
+          </li>
+          <li>
+            <i>Italic</i> is based on <a href="https://www.ibm.com/plex/">IBM Plex Mono</a>'s humanist italic preset.
+          </li>
+          <li>
+            The neutral reading-first attitude is influenced by <a href="https://commitmono.com/">Commit Mono</a>.
+          </li>
+          <li>
+            The lowercase <code>l</code> keeps an asymmetric serif.<br>
+            Geometric shapes for digits, like in
+            <code>3</code>, <code>6</code>, and <code>9</code>.
+          </li>
+        </ul>
+      </section>
 
-    <footer>
-      <p>
-        Derived from Iosevka. Distributed under the SIL Open Font License 1.1.
-      </p>
-    </footer>
-  </main>
+      <footer>
+        <p>
+          Derived from Iosevka. Distributed under the SIL Open Font License 1.1.
+        </p>
+      </footer>
+    </main>
+  </div>
   <script type="module">
-    import { codeToHtml } from "https://esm.sh/shiki@4.2.0";
+    const specimen = document.querySelector(".specimen");
+    const controls = document.querySelector(".controls");
+    const sizeOutput = document.querySelector("[data-size-output]");
+
+    const stateFromControls = () => ({
+      weight: controls.querySelector('[data-sample-control="weight"]:checked').value,
+      italic: controls.querySelector('[data-sample-control="italic"]').checked,
+      size: controls.querySelector('[data-sample-control="size"]').value,
+      calt: controls.querySelector('[data-feature="calt"]').checked,
+      dlig: controls.querySelector('[data-feature="dlig"]').checked,
+      zero: controls.querySelector('[data-feature="zero"]').checked,
+      frac: controls.querySelector('[data-feature="frac"]').checked,
+    });
+
+    const applyState = (state) => {
+      const features = ["calt", "dlig", "zero", "frac"]
+        .map((feature) => `"${feature}" ${state[feature] ? 1 : 0}`);
+
+      specimen.style.setProperty("--sample-weight", state.weight);
+      specimen.style.setProperty("--sample-style", state.italic ? "italic" : "normal");
+      specimen.style.setProperty("--sample-size", `${state.size}px`);
+      specimen.style.setProperty("--sample-features", features.join(", "));
+      sizeOutput.value = `${state.size}px`;
+    };
+
+    applyState(stateFromControls());
+    controls.addEventListener("input", () => applyState(stateFromControls()));
 
     const blocks = document.querySelectorAll("[data-shiki]");
 
-    for (const block of blocks) {
-      const code = block.textContent.trim();
-      const lang = block.dataset.lang || "text";
+    import("https://esm.sh/shiki@4.2.0").then(async ({ codeToHtml }) => {
+      for (const block of blocks) {
+        const code = block.textContent.trim();
+        const lang = block.dataset.lang || "text";
 
-      block.outerHTML = await codeToHtml(code, {
-        lang,
-        theme: "github-light",
-      });
-    }
+        block.outerHTML = await codeToHtml(code, {
+          lang,
+          theme: "github-light",
+        });
+      }
+    }).catch(() => { });
   </script>
 </body>
 
