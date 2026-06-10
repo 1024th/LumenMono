@@ -14,70 +14,72 @@
 <body>
   <div class="page-shell">
     <aside class="controls" aria-label="Specimen controls">
-      <h2>Controls</h2>
+      <details open>
+        <summary>Controls</summary>
 
-      <div class="control-group">
-        <span class="control-label">Weight</span>
-        <div class="segmented-control" aria-label="Weight">
-          <label>
-            <input type="radio" name="font-weight" value="300" data-sample-control="weight" aria-label="Light" />
-            <span>Light</span>
-          </label>
-          <label>
-            <input type="radio" name="font-weight" value="400" data-sample-control="weight" aria-label="Regular"
-              checked />
-            <span>Regular</span>
-          </label>
-          <label>
-            <input type="radio" name="font-weight" value="700" data-sample-control="weight" aria-label="Bold" />
-            <span>Bold</span>
-          </label>
+        <div class="control-group">
+          <span class="control-label">Weight</span>
+          <div class="segmented-control" aria-label="Weight">
+            <label>
+              <input type="radio" name="font-weight" value="300" data-sample-control="weight" aria-label="Light" />
+              <span>Light</span>
+            </label>
+            <label>
+              <input type="radio" name="font-weight" value="400" data-sample-control="weight" aria-label="Regular"
+                checked />
+              <span>Regular</span>
+            </label>
+            <label>
+              <input type="radio" name="font-weight" value="700" data-sample-control="weight" aria-label="Bold" />
+              <span>Bold</span>
+            </label>
+          </div>
         </div>
-      </div>
 
-      <label class="control-switch">
-        <span>Italic</span>
-        <input type="checkbox" data-sample-control="italic" />
-      </label>
+        <label class="control-switch">
+          <span>Italic</span>
+          <input type="checkbox" data-sample-control="italic" />
+        </label>
 
-      <div class="control-group">
-        <label for="font-size">Size <output for="font-size" data-size-output>24px</output></label>
-        <input id="font-size" type="range" min="14" max="32" value="24" data-sample-control="size" />
-      </div>
+        <div class="control-group">
+          <label for="font-size">Size <output for="font-size" data-size-output>24px</output></label>
+          <input id="font-size" type="range" min="14" max="32" value="24" data-sample-control="size" />
+        </div>
 
-      <fieldset>
-        <legend>OpenType</legend>
-        <label class="control-switch">
-          <span class="feature-label">
-            <span class="feature-tag">calt</span>
-            <span class="help-tip" tabindex="0" aria-label="Contextual alternates"
-              data-help="Contextual alternates">?</span>
-          </span>
-          <input type="checkbox" data-feature="calt" checked />
-        </label>
-        <label class="control-switch">
-          <span class="feature-label">
-            <span class="feature-tag">dlig</span>
-            <span class="help-tip" tabindex="0" aria-label="Discretionary ligatures"
-              data-help="Discretionary ligatures">?</span>
-          </span>
-          <input type="checkbox" data-feature="dlig" />
-        </label>
-        <label class="control-switch">
-          <span class="feature-label">
-            <span class="feature-tag">zero</span>
-            <span class="help-tip" tabindex="0" aria-label="Slashed zero" data-help="Slashed zero">?</span>
-          </span>
-          <input type="checkbox" data-feature="zero" checked />
-        </label>
-        <label class="control-switch">
-          <span class="feature-label">
-            <span class="feature-tag">frac</span>
-            <span class="help-tip" tabindex="0" aria-label="Fractions" data-help="Fractions">?</span>
-          </span>
-          <input type="checkbox" data-feature="frac" />
-        </label>
-      </fieldset>
+        <fieldset>
+          <legend>OpenType</legend>
+          <label class="control-switch">
+            <span class="feature-label">
+              <span class="feature-tag">calt</span>
+              <span class="help-tip" tabindex="0" aria-label="Contextual alternates"
+                data-help="Contextual alternates">?</span>
+            </span>
+            <input type="checkbox" data-feature="calt" checked />
+          </label>
+          <label class="control-switch">
+            <span class="feature-label">
+              <span class="feature-tag">dlig</span>
+              <span class="help-tip" tabindex="0" aria-label="Discretionary ligatures"
+                data-help="Discretionary ligatures">?</span>
+            </span>
+            <input type="checkbox" data-feature="dlig" />
+          </label>
+          <label class="control-switch">
+            <span class="feature-label">
+              <span class="feature-tag">zero</span>
+              <span class="help-tip" tabindex="0" aria-label="Slashed zero" data-help="Slashed zero">?</span>
+            </span>
+            <input type="checkbox" data-feature="zero" checked />
+          </label>
+          <label class="control-switch">
+            <span class="feature-label">
+              <span class="feature-tag">frac</span>
+              <span class="help-tip" tabindex="0" aria-label="Fractions" data-help="Fractions">?</span>
+            </span>
+            <input type="checkbox" data-feature="frac" />
+          </label>
+        </fieldset>
+      </details>
 
     </aside>
 
@@ -218,7 +220,9 @@ Qed.</code></pre>
   <script type="module">
     const specimen = document.querySelector(".specimen");
     const controls = document.querySelector(".controls");
+    const controlsPanel = controls.querySelector("details");
     const sizeOutput = document.querySelector("[data-size-output]");
+    const compactControls = window.matchMedia("(max-width: 840px)");
 
     const stateFromControls = () => ({
       weight: controls.querySelector('[data-sample-control="weight"]:checked').value,
@@ -243,6 +247,13 @@ Qed.</code></pre>
 
     applyState(stateFromControls());
     controls.addEventListener("input", () => applyState(stateFromControls()));
+
+    const syncControlsPanel = () => {
+      controlsPanel.open = !compactControls.matches;
+    };
+
+    syncControlsPanel();
+    compactControls.addEventListener("change", syncControlsPanel);
 
     const blocks = document.querySelectorAll("[data-shiki]");
 

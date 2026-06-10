@@ -32,9 +32,9 @@ body {
 
 .page-shell {
   display: grid;
-  grid-template-columns: minmax(10rem, 13rem) minmax(0, 720px);
-  gap: var(--space-lg);
-  width: min(1040px, calc(100% - var(--space-lg)));
+  grid-template-columns: minmax(12rem, 16rem) minmax(0, 720px);
+  gap: var(--space-md);
+  width: min(1040px, calc(100% - var(--space-md)));
   margin: 0 auto;
 }
 
@@ -44,16 +44,19 @@ main {
 
 .controls {
   --control-gap: 1rem;
-  --control-label-gap: 0.35rem;
+  --control-label-gap: 0.4rem;
   position: sticky;
   top: var(--space-md);
   align-self: start;
-  padding: var(--space-md) 0;
+  padding: var(--space-sm);
+  border: 1px solid var(--line);
   font-size: 0.875rem;
 }
 
-.controls h2 {
+.controls summary {
   margin-bottom: var(--control-gap);
+  color: var(--muted);
+  cursor: pointer;
 }
 
 .control-group,
@@ -128,18 +131,18 @@ main {
 
 .segmented-control {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(4.5rem, 1fr));
   width: 100%;
-  border: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
 }
 
 .segmented-control label {
-  display: block;
+  display: flex;
   margin: 0;
-}
-
-.segmented-control label+label {
-  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
 }
 
 .segmented-control input {
@@ -150,12 +153,11 @@ main {
 
 .segmented-control span {
   display: grid;
+  flex: 1;
   place-items: center;
   min-height: 1.85rem;
   padding: 0 0.45rem;
-  background: transparent;
   color: var(--muted);
-  font-weight: 400;
   line-height: 1;
   cursor: pointer;
 }
@@ -195,7 +197,6 @@ main {
   align-items: center;
   justify-content: flex-start;
   gap: 0.55rem;
-  line-height: 1.3;
 }
 
 .control-switch input {
@@ -241,7 +242,6 @@ main {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  min-width: 0;
 }
 
 .feature-tag {
@@ -277,7 +277,6 @@ main {
   content: attr(data-help);
   font-size: 0.75rem;
   font-weight: 400;
-  line-height: 1.35;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
@@ -310,7 +309,6 @@ h1 {
 h2 {
   margin-bottom: var(--space-sm);
   font-size: 1.25rem;
-  line-height: 1.15;
   font-weight: 700;
 }
 
@@ -324,7 +322,6 @@ main section>h2::before {
   margin-bottom: var(--space-sm);
   color: var(--muted);
   font-size: 1.25rem;
-  line-height: 1.3;
 }
 
 .links {
@@ -385,7 +382,6 @@ a:hover {
     Consolas,
     monospace;
   font-size: 0.9rem;
-  line-height: 1.2;
   overflow-x: auto;
   white-space: pre;
 }
@@ -402,7 +398,6 @@ a:hover {
 .terminal-specimen p {
   margin: 0 0 var(--space-sm);
   color: var(--muted);
-  line-height: 1.6;
 }
 
 .terminal-compare {
@@ -421,13 +416,11 @@ a:hover {
 
 .terminal-line span {
   color: var(--muted);
-  font-weight: 700;
 }
 
 .terminal-line code {
   padding: var(--space-xs) var(--space-sm);
   background: var(--code-bg);
-  line-height: 1.4;
 }
 
 .terminal-regular code {
@@ -458,7 +451,6 @@ a:hover {
   max-width: 900px;
   margin: 0;
   padding-left: var(--space-md);
-  line-height: 1.6;
 }
 
 .notes li+li {
@@ -490,8 +482,14 @@ footer p {
   }
 
   .controls {
-    position: static;
-    padding: var(--space-md) 0 0;
+    position: sticky;
+    top: var(--space-sm);
+    z-index: 5;
+    margin: 0;
+    max-height: 100dvh;
+    overflow-y: auto;
+    padding: var(--space-sm);
+    background: var(--paper);
   }
 }
 
