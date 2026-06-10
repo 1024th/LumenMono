@@ -1,0 +1,54 @@
+
+@font-face {
+	font-family: 'Lumen Mono Term Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/LumenMonoTerm-Light.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Lumen Mono Term Web';
+	font-display: swap;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/LumenMonoTerm-LightItalic.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Lumen Mono Term Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/LumenMonoTerm-Regular.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Lumen Mono Term Web';
+	font-display: swap;
+	font-weight: 400;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/LumenMonoTerm-Italic.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Lumen Mono Term Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: normal;
+	font-style: normal;
+	src: url('WOFF2/LumenMonoTerm-Bold.woff2') format('woff2');
+}
+
+@font-face {
+	font-family: 'Lumen Mono Term Web';
+	font-display: swap;
+	font-weight: 700;
+	font-stretch: normal;
+	font-style: italic;
+	src: url('WOFF2/LumenMonoTerm-BoldItalic.woff2') format('woff2');
+}
