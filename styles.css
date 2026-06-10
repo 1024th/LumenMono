@@ -369,7 +369,6 @@ a:hover {
 }
 
 .specimen pre {
-  width: fit-content;
   max-width: 100%;
   margin: var(--space-sm) 0;
   padding: var(--space-sm);
@@ -390,6 +389,26 @@ a:hover {
 .specimen code {
   padding: 0;
   background: transparent;
+}
+
+.specimen pre.shiki code {
+  counter-reset: line;
+}
+
+.specimen pre.shiki .line {
+  display: inline-block;
+  min-width: 100%;
+}
+
+.specimen pre.shiki .line::before {
+  display: inline-block;
+  width: 2ch;
+  margin-right: 1em;
+  color: var(--muted);
+  text-align: right;
+  content: counter(line);
+  counter-increment: line;
+  user-select: none;
 }
 
 .terminal-specimen {
