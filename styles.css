@@ -69,14 +69,12 @@ main {
   margin: 0;
 }
 
-.control-group label:not(.control-switch),
-.control-label,
-.controls legend {
+.control-label {
   display: block;
   color: var(--muted);
 }
 
-.control-group label:not(.control-switch) {
+.control-row {
   display: flex;
   justify-content: space-between;
   gap: var(--space-sm);
@@ -176,28 +174,30 @@ main {
   outline-offset: 2px;
 }
 
-.controls fieldset {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
-  column-gap: var(--space-sm);
-  row-gap: 0.45rem;
+.feature-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem var(--space-sm);
+  min-inline-size: 0;
   padding: 0;
   border: 0;
 }
 
-.controls fieldset legend {
-  grid-column: 1 / -1;
-  width: 100%;
-  margin: 0 0 var(--control-label-gap);
+.feature-controls legend {
+  flex-basis: 100%;
+  margin-bottom: var(--control-label-gap);
   padding: 0;
 }
 
 .control-switch {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 0.55rem;
   color: var(--muted);
+}
+
+.feature-controls .control-switch {
+  flex: 1 1 6rem;
 }
 
 .control-switch:has(input:checked) {
