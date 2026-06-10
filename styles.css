@@ -47,6 +47,7 @@ main {
   --control-label-gap: 0.4rem;
   position: sticky;
   top: var(--space-md);
+  max-height: calc(100vh - var(--space-md) - var(--space-sm));
   align-self: start;
   padding: var(--space-sm);
   border: 1px solid var(--line);
@@ -507,7 +508,7 @@ footer p {
     top: var(--space-sm);
     z-index: 5;
     margin: 0;
-    max-height: 100dvh;
+    overflow-x: hidden;
     overflow-y: auto;
     padding: var(--space-sm);
     background: var(--paper);
