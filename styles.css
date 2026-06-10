@@ -197,6 +197,11 @@ main {
   align-items: center;
   justify-content: flex-start;
   gap: 0.55rem;
+  color: var(--muted);
+}
+
+.control-switch:has(input:checked) {
+  color: var(--ink);
 }
 
 .control-switch input {
@@ -328,12 +333,8 @@ main section>h2::before {
   color: var(--muted);
 }
 
-.links a {
-  color: var(--ink);
-}
-
 a {
-  color: inherit;
+  color: var(--ink);
   text-decoration-thickness: 0.06em;
   text-underline-offset: 0.18em;
 }
@@ -451,10 +452,12 @@ a:hover {
   max-width: 900px;
   margin: 0;
   padding-left: var(--space-md);
+  color: var(--muted);
 }
 
 .notes li+li {
   margin-top: var(--space-xs);
+  color: var(--muted);
 }
 
 code {
