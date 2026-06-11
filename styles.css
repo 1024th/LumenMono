@@ -17,6 +17,7 @@
 
 body {
   margin: 0;
+  overflow-x: clip;
   background: var(--paper);
   color: var(--ink);
   font-family:
@@ -250,6 +251,7 @@ main {
 }
 
 .feature-tag {
+  display: inline-block;
   min-width: 4ch;
 }
 
@@ -259,7 +261,7 @@ main {
   place-items: center;
   width: 0.9rem;
   height: 0.9rem;
-  border: 1px solid var(--line);
+  border: 1px solid currentColor;
   border-radius: 50%;
   color: var(--muted);
   font-size: 0.75rem;
@@ -508,8 +510,7 @@ footer p {
     top: var(--space-sm);
     z-index: 5;
     margin: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: visible;
     padding: var(--space-sm);
     background: var(--paper);
   }
@@ -518,16 +519,6 @@ footer p {
 @media (max-width: 520px) {
   .page-shell {
     width: min(100% - var(--space-md), 720px);
-  }
-
-  .help-tip::after {
-    left: 0;
-    transform: translate(0, 0.2rem);
-  }
-
-  .help-tip:hover::after,
-  .help-tip:focus-visible::after {
-    transform: translate(0, 0);
   }
 
   h1 {
