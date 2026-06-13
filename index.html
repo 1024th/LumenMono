@@ -88,6 +88,56 @@
             <input id="feature-frac" type="checkbox" data-feature="frac" />
           </div>
         </fieldset>
+
+        <fieldset class="control-group variant-controls">
+          <legend class="control-label">Variants</legend>
+          <div class="variant-row">
+            <label class="control-switch variant-switch">
+              <span>g</span>
+              <input id="feature-cv42-enabled" type="checkbox" data-feature-toggle="cv42" />
+            </label>
+            <div class="segmented-control" aria-label="Lowercase g override">
+              <label>
+                <input type="radio" name="feature-cv42" value="1" data-feature-value="cv42"
+                  aria-label="Alternate g shape 1" checked />
+                <span class="variant-preview" style="font-feature-settings: &quot;cv42&quot; 1;">g</span>
+              </label>
+              <label>
+                <input type="radio" name="feature-cv42" value="3" data-feature-value="cv42"
+                  aria-label="Alternate g shape 2" />
+                <span class="variant-preview" style="font-feature-settings: &quot;cv42&quot; 3;">g</span>
+              </label>
+              <label>
+                <input type="radio" name="feature-cv42" value="8" data-feature-value="cv42"
+                  aria-label="Alternate g shape 3" />
+                <span class="variant-preview" style="font-feature-settings: &quot;cv42&quot; 8;">g</span>
+              </label>
+            </div>
+          </div>
+          <div class="variant-row">
+            <label class="control-switch variant-switch">
+              <span>l</span>
+              <input id="feature-cv47-enabled" type="checkbox" data-feature-toggle="cv47" />
+            </label>
+            <div class="segmented-control" aria-label="Lowercase l override">
+              <label>
+                <input type="radio" name="feature-cv47" value="5" data-feature-value="cv47"
+                  aria-label="Alternate l shape 1" checked />
+                <span class="variant-preview" style="font-feature-settings: &quot;cv47&quot; 5;">l</span>
+              </label>
+              <label>
+                <input type="radio" name="feature-cv47" value="10" data-feature-value="cv47"
+                  aria-label="Alternate l shape 2" />
+                <span class="variant-preview" style="font-feature-settings: &quot;cv47&quot; 10;">l</span>
+              </label>
+              <label>
+                <input type="radio" name="feature-cv47" value="14" data-feature-value="cv47"
+                  aria-label="Alternate l shape 3" />
+                <span class="variant-preview" style="font-feature-settings: &quot;cv47&quot; 14;">l</span>
+              </label>
+            </div>
+          </div>
+        </fieldset>
       </details>
 
     </aside>
@@ -242,11 +292,21 @@ Qed.</code></pre>
       dlig: controls.querySelector('[data-feature="dlig"]').checked,
       zero: controls.querySelector('[data-feature="zero"]').checked,
       frac: controls.querySelector('[data-feature="frac"]').checked,
+      cv42Enabled: controls.querySelector('[data-feature-toggle="cv42"]').checked,
+      cv42: controls.querySelector('[data-feature-value="cv42"]:checked').value,
+      cv47Enabled: controls.querySelector('[data-feature-toggle="cv47"]').checked,
+      cv47: controls.querySelector('[data-feature-value="cv47"]:checked').value,
     });
 
     const applyState = (state) => {
       const features = ["calt", "dlig", "zero", "frac"]
         .map((feature) => `"${feature}" ${state[feature] ? 1 : 0}`);
+      if (state.cv42Enabled) {
+        features.push(`"cv42" ${state.cv42}`);
+      }
+      if (state.cv47Enabled) {
+        features.push(`"cv47" ${state.cv47}`);
+      }
       document.body.style.setProperty("--font-family", state.unhinted ? '"Lumen Mono Web Unhinted"' : '"Lumen Mono Web"');
       document.body.style.setProperty("--font-family-term", state.unhinted ? '"Lumen Mono Term Web Unhinted"' : '"Lumen Mono Term Web"');
       specimen.style.setProperty("--sample-weight", state.weight);

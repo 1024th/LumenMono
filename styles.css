@@ -72,6 +72,17 @@ main {
   margin: 0;
 }
 
+fieldset.control-group {
+  min-inline-size: 0;
+  padding: 0;
+  border: 0;
+}
+
+fieldset.control-group legend {
+  margin-bottom: var(--control-label-gap);
+  padding: 0;
+}
+
 .control-label {
   display: block;
   color: var(--muted);
@@ -177,19 +188,63 @@ main {
   outline-offset: 2px;
 }
 
+.variant-preview {
+  font-family:
+    var(--font-family),
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Consolas,
+    monospace;
+  line-height: 1;
+}
+
+.variant-row {
+  --variant-row-height: 1.5rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-md);
+  height: var(--variant-row-height);
+  min-width: 0;
+}
+
+.variant-row .control-switch {
+  align-items: center;
+  height: var(--variant-row-height);
+}
+
+.variant-row .segmented-control {
+  align-self: start;
+  grid-template-columns: repeat(3, 1fr);
+  height: var(--variant-row-height);
+  min-width: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.variant-row .segmented-control span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  height: calc(var(--variant-row-height) - 2px);
+  padding: 0.08rem 0.3rem 0;
+}
+
+.variant-switch:has(input:checked) + .segmented-control {
+  visibility: visible;
+  pointer-events: auto;
+}
+
 .feature-controls {
   display: flex;
   flex-wrap: wrap;
   gap: 0.45rem var(--space-sm);
-  min-inline-size: 0;
-  padding: 0;
-  border: 0;
 }
 
 .feature-controls legend {
   flex-basis: 100%;
-  margin-bottom: var(--control-label-gap);
-  padding: 0;
 }
 
 .control-switch {
