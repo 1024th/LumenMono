@@ -8,6 +8,8 @@
   <meta name="description" content="Lumen Mono is a custom build of the Iosevka typeface." />
   <link rel="stylesheet" href="./fonts/LumenMono.css" />
   <link rel="stylesheet" href="./fonts/LumenMonoTerm.css" />
+  <link rel="stylesheet" href="./fonts/LumenMono-Unhinted.css" />
+  <link rel="stylesheet" href="./fonts/LumenMonoTerm-Unhinted.css" />
   <link rel="stylesheet" href="./styles.css" />
 </head>
 
@@ -39,6 +41,11 @@
         <label class="control-group control-switch">
           <span>Italic</span>
           <input type="checkbox" data-sample-control="italic" />
+        </label>
+
+        <label class="control-group control-switch">
+          <span>Unhinted</span>
+          <input type="checkbox" data-sample-control="unhinted" />
         </label>
 
         <div class="control-group">
@@ -229,6 +236,7 @@ Qed.</code></pre>
     const stateFromControls = () => ({
       weight: controls.querySelector('[data-sample-control="weight"]:checked').value,
       italic: controls.querySelector('[data-sample-control="italic"]').checked,
+      unhinted: controls.querySelector('[data-sample-control="unhinted"]').checked,
       size: controls.querySelector('[data-sample-control="size"]').value,
       calt: controls.querySelector('[data-feature="calt"]').checked,
       dlig: controls.querySelector('[data-feature="dlig"]').checked,
@@ -239,7 +247,8 @@ Qed.</code></pre>
     const applyState = (state) => {
       const features = ["calt", "dlig", "zero", "frac"]
         .map((feature) => `"${feature}" ${state[feature] ? 1 : 0}`);
-
+      document.body.style.setProperty("--font-family", state.unhinted ? '"Lumen Mono Web Unhinted"' : '"Lumen Mono Web"');
+      document.body.style.setProperty("--font-family-term", state.unhinted ? '"Lumen Mono Term Web Unhinted"' : '"Lumen Mono Term Web"');
       specimen.style.setProperty("--sample-weight", state.weight);
       specimen.style.setProperty("--sample-style", state.italic ? "italic" : "normal");
       specimen.style.setProperty("--sample-size", `${state.size}px`);
