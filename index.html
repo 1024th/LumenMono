@@ -51,9 +51,9 @@
 
         <div class="control-group">
           <label class="control-label control-row" for="font-size">
-            Size <output for="font-size" data-size-output>24px</output>
+            Size <output for="font-size" data-size-output>22px / code 16px</output>
           </label>
-          <input id="font-size" type="range" min="12" max="36" value="24" data-sample-control="size" />
+          <input id="font-size" type="range" min="12" max="36" value="22" data-sample-control="size" />
         </div>
 
         <fieldset class="control-group feature-controls">
@@ -296,6 +296,7 @@ Qed.</code></pre>
     const controlsPanel = controls.querySelector("details");
     const sizeOutput = document.querySelector("[data-size-output]");
     const compactControls = window.matchMedia("(max-width: 840px)");
+    const codeSizeScale = 0.75;
 
     const stateFromControls = () => ({
       weight: controls.querySelector('[data-sample-control="weight"]:checked').value,
@@ -313,6 +314,8 @@ Qed.</code></pre>
     });
 
     const applyState = (state) => {
+      const sampleSize = Number(state.size);
+      const codeSize = Math.round(sampleSize * codeSizeScale);
       const features = ["calt", "dlig", "zero", "frac"]
         .map((feature) => `"${feature}" ${state[feature] ? 1 : 0}`);
       if (state.cv42Enabled) {
@@ -326,8 +329,9 @@ Qed.</code></pre>
       specimen.style.setProperty("--sample-weight", state.weight);
       specimen.style.setProperty("--sample-style", state.italic ? "italic" : "normal");
       specimen.style.setProperty("--sample-size", `${state.size}px`);
+      specimen.style.setProperty("--code-size", `${codeSize}px`);
       specimen.style.setProperty("--sample-features", features.join(", "));
-      sizeOutput.value = `${state.size}px`;
+      sizeOutput.value = `${state.size}px / code ${codeSize}px`;
     };
 
     applyState(stateFromControls());

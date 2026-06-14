@@ -407,7 +407,8 @@ a:hover {
   --sample-family: var(--font-family);
   --sample-weight: 400;
   --sample-style: normal;
-  --sample-size: 24px;
+  --sample-size: 22px;
+  --code-size: 16px;
   --sample-features: "calt" 1, "dlig" 0, "zero" 1, "frac" 0;
   padding: var(--space-md) 0;
   font-family:
@@ -440,7 +441,8 @@ a:hover {
     Menlo,
     Consolas,
     monospace;
-  font-size: 0.9rem;
+  font-size: var(--code-size);
+  line-height: 1.35;
   overflow-x: auto;
   white-space: pre;
 }
