@@ -7,7 +7,7 @@
   --code-bg: #ebe6dc;
   --font-family: "Lumen Mono Web";
   --font-family-term: "Lumen Mono Term Web";
-  --space-xs: 0.75rem;
+  --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
   --space-lg: 3rem;
@@ -498,7 +498,7 @@ a:hover {
 }
 
 .terminal-line code {
-  padding: var(--space-xs) var(--space-sm);
+  padding: 0.2rem var(--space-xs);
   background: var(--code-bg);
 }
 
@@ -534,7 +534,7 @@ a:hover {
 }
 
 .notes li+li {
-  margin-top: var(--space-xs);
+  margin-top: var(--space-sm);
   color: var(--muted);
 }
 
