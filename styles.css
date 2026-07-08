@@ -223,6 +223,10 @@ fieldset.control-group legend {
   pointer-events: none;
 }
 
+.variant-row .segmented-control[data-columns="2"] {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .variant-row .segmented-control span {
   display: flex;
   align-items: center;

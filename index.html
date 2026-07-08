@@ -138,6 +138,24 @@
               </label>
             </div>
           </div>
+          <div class="variant-row">
+            <label class="control-switch variant-switch">
+              <span>y</span>
+              <input id="feature-cv59-enabled" type="checkbox" data-feature-toggle="cv59" />
+            </label>
+            <div class="segmented-control" data-columns="2" aria-label="Lowercase y override">
+              <label>
+                <input type="radio" name="feature-cv59" value="1" data-feature-value="cv59"
+                  aria-label="Alternate y shape 1" checked />
+                <span class="variant-preview" style="font-feature-settings: &quot;cv59&quot; 1;">y</span>
+              </label>
+              <label>
+                <input type="radio" name="feature-cv59" value="4" data-feature-value="cv59"
+                  aria-label="Alternate y shape 2" />
+                <span class="variant-preview" style="font-feature-settings: &quot;cv59&quot; 4;">y</span>
+              </label>
+            </div>
+          </div>
         </fieldset>
       </details>
 
@@ -313,6 +331,8 @@ Qed.</code></pre>
       cv42: controls.querySelector('[data-feature-value="cv42"]:checked').value,
       cv47Enabled: controls.querySelector('[data-feature-toggle="cv47"]').checked,
       cv47: controls.querySelector('[data-feature-value="cv47"]:checked').value,
+      cv59Enabled: controls.querySelector('[data-feature-toggle="cv59"]').checked,
+      cv59: controls.querySelector('[data-feature-value="cv59"]:checked').value,
     });
 
     const applyState = (state) => {
@@ -325,6 +345,9 @@ Qed.</code></pre>
       }
       if (state.cv47Enabled) {
         features.push(`"cv47" ${state.cv47}`);
+      }
+      if (state.cv59Enabled) {
+        features.push(`"cv59" ${state.cv59}`);
       }
       document.body.style.setProperty("--font-family", state.unhinted ? '"Lumen Mono Web Unhinted"' : '"Lumen Mono Web"');
       document.body.style.setProperty("--font-family-term", state.unhinted ? '"Lumen Mono Term Web Unhinted"' : '"Lumen Mono Term Web"');
