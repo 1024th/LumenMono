@@ -411,8 +411,6 @@ a:hover {
   --sample-family: var(--font-family);
   --sample-weight: 400;
   --sample-style: normal;
-  --sample-size: 22px;
-  --code-size: 16px;
   --sample-features: "calt" 1, "dlig" 0, "zero" 1, "frac" 0;
   padding: var(--space-md) 0;
   font-family:
@@ -422,14 +420,69 @@ a:hover {
     Menlo,
     Consolas,
     monospace;
-  font-size: var(--sample-size);
   font-weight: var(--sample-weight);
   font-style: var(--sample-style);
   font-feature-settings: var(--sample-features);
 }
 
+.specimen-group {
+  position: relative;
+}
+
+.specimen-text {
+  font-size: var(--group-size, 22px);
+}
+
 .specimen p {
   margin: 0.5rem 0;
+}
+
+.size-control {
+  position: absolute;
+  z-index: 1;
+  top: 0.5rem;
+  right: 0;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--muted);
+  font-family: var(--font-family);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.code-group .size-control {
+  background: var(--code-bg);
+}
+
+.size-control button,
+.size-control output {
+  display: grid;
+  width: 1.75rem;
+  height: 1.5rem;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+}
+
+.size-control button {
+  cursor: pointer;
+}
+
+.size-control button:hover {
+  background: var(--code-bg);
+  color: var(--ink);
+}
+
+.size-control output {
+  border-right: 1px solid var(--line);
+  border-left: 1px solid var(--line);
 }
 
 .specimen pre {
@@ -445,7 +498,8 @@ a:hover {
     Menlo,
     Consolas,
     monospace;
-  font-size: var(--code-size);
+  font-size: var(--group-size, 14px);
+  font-weight: 400;
   line-height: 1.35;
   overflow-x: auto;
   white-space: pre;

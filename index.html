@@ -49,13 +49,6 @@
           <input type="checkbox" data-sample-control="unhinted" />
         </label>
 
-        <div class="control-group">
-          <label class="control-label control-row" for="font-size">
-            Size <output for="font-size" data-size-output>22px / code 16px</output>
-          </label>
-          <input id="font-size" type="range" min="12" max="36" value="22" data-sample-control="size" />
-        </div>
-
         <fieldset class="control-group feature-controls">
           <legend class="control-label">OpenType</legend>
           <div class="control-switch">
@@ -175,24 +168,40 @@
 
       <section class="specimen" aria-label="Lumen Mono specimen">
         <h2>Specimen</h2>
-        <p>Il1 0O oO 1/2 3/4 {} [] () &lt;=&gt; != === -&gt; =&gt;</p>
-        <p>ABCDEFG HIJKLMN OPQRST UVWXYZ<br>
-          abcdefg hijklmn opqrst uvwxyz
-        </p>
-        <p>0123456789 _,.?/:;`~!@#$%^&*-=+</p>
-        <p>
-          <span style="font-weight: 300">light</span>
-          <span style="font-weight: 400;">regular</span>
-          <span style="font-weight: 700;">bold</span><br>
-          <span style="font-weight: 300; font-style: italic">light</span>
-          <span style="font-weight: 400; font-style: italic">italic</span>&ensp;&ensp;<span
-            style="font-weight: 700; font-style: italic">bold</span>
-        </p>
-        <p>
-          The minimum is less than or equal to the maximum<br>
-          Keep the hot path small and the fallback explicit
-        </p>
-        <pre data-shiki data-lang="ts"><code>function fib(n: number): number {
+        <div class="specimen-group" data-size-group data-size="22" data-size-min="12" data-size-max="36">
+          <div class="size-control" aria-label="Specimen text size">
+            <button type="button" data-size-step="-1" aria-label="Decrease specimen text size">−</button>
+            <output data-group-size>22</output>
+            <button type="button" data-size-step="1" aria-label="Increase specimen text size">+</button>
+          </div>
+          <div class="specimen-text">
+            <p>Il1 0O oO 1/2 3/4 {} [] () &lt;=&gt; != === -&gt; =&gt;</p>
+            <p>ABCDEFG HIJKLMN OPQRST UVWXYZ<br>
+              abcdefg hijklmn opqrst uvwxyz
+            </p>
+            <p>0123456789 _,.?/:;`~!@#$%^&*-=+</p>
+            <p>
+              <span style="font-weight: 300; font-style: normal">light</span>
+              <span style="font-weight: 400; font-style: normal">regular</span>
+              <span style="font-weight: 700; font-style: normal">bold</span><br>
+              <span style="font-weight: 300; font-style: italic">light</span>
+              <span style="font-weight: 400; font-style: italic">italic</span>&ensp;&ensp;<span
+                style="font-weight: 700; font-style: italic">bold</span>
+            </p>
+            <p>
+              The minimum is less than or equal to the maximum<br>
+              Keep the hot path small and the fallback explicit
+            </p>
+          </div>
+        </div>
+
+        <div class="specimen-group code-group" data-size-group data-size="14" data-size-min="11" data-size-max="22">
+          <div class="size-control" aria-label="TypeScript sample size">
+            <button type="button" data-size-step="-1" aria-label="Decrease TypeScript sample size">−</button>
+            <output data-group-size>14</output>
+            <button type="button" data-size-step="1" aria-label="Increase TypeScript sample size">+</button>
+          </div>
+          <pre data-shiki data-lang="ts"><code>function fib(n: number): number {
   if (n <= 1) return n;
   return fib(n - 1) + fib(n - 2);
 }
@@ -202,8 +211,15 @@ function greet(name: string) {
 }
 greet("world");
 </code></pre>
+        </div>
 
-        <pre data-shiki data-lang="coq"><code>From Coq Require Import ssreflect.
+        <div class="specimen-group code-group" data-size-group data-size="14" data-size-min="11" data-size-max="22">
+          <div class="size-control" aria-label="Coq sample size">
+            <button type="button" data-size-step="-1" aria-label="Decrease Coq sample size">−</button>
+            <output data-group-size>14</output>
+            <button type="button" data-size-step="1" aria-label="Increase Coq sample size">+</button>
+          </div>
+          <pre data-shiki data-lang="coq"><code>From Coq Require Import ssreflect.
 
 (* ensure proofs are well-structured *)
 Set Default Goal Selector "!".
@@ -238,6 +254,7 @@ Proof.
   - reflexivity.
   - by rewrite IHl1.
 Qed.</code></pre>
+        </div>
       </section>
 
       <section class="terminal-specimen" aria-label="Lumen Mono Term specimen">
@@ -314,15 +331,12 @@ Qed.</code></pre>
     const specimen = document.querySelector(".specimen");
     const controls = document.querySelector(".controls");
     const controlsPanel = controls.querySelector("details");
-    const sizeOutput = document.querySelector("[data-size-output]");
     const compactControls = window.matchMedia("(max-width: 840px)");
-    const codeSizeScale = 0.75;
 
     const stateFromControls = () => ({
       weight: controls.querySelector('[data-sample-control="weight"]:checked').value,
       italic: controls.querySelector('[data-sample-control="italic"]').checked,
       unhinted: controls.querySelector('[data-sample-control="unhinted"]').checked,
-      size: controls.querySelector('[data-sample-control="size"]').value,
       calt: controls.querySelector('[data-feature="calt"]').checked,
       dlig: controls.querySelector('[data-feature="dlig"]').checked,
       zero: controls.querySelector('[data-feature="zero"]').checked,
@@ -336,8 +350,6 @@ Qed.</code></pre>
     });
 
     const applyState = (state) => {
-      const sampleSize = Number(state.size);
-      const codeSize = Math.round(sampleSize * codeSizeScale);
       const features = ["calt", "dlig", "zero", "frac"]
         .map((feature) => `"${feature}" ${state[feature] ? 1 : 0}`);
       if (state.cv42Enabled) {
@@ -353,14 +365,24 @@ Qed.</code></pre>
       document.body.style.setProperty("--font-family-term", state.unhinted ? '"Lumen Mono Term Web Unhinted"' : '"Lumen Mono Term Web"');
       specimen.style.setProperty("--sample-weight", state.weight);
       specimen.style.setProperty("--sample-style", state.italic ? "italic" : "normal");
-      specimen.style.setProperty("--sample-size", `${state.size}px`);
-      specimen.style.setProperty("--code-size", `${codeSize}px`);
       specimen.style.setProperty("--sample-features", features.join(", "));
-      sizeOutput.value = `${state.size}px / code ${codeSize}px`;
     };
 
     applyState(stateFromControls());
     controls.addEventListener("input", () => applyState(stateFromControls()));
+
+    specimen.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-size-step]");
+      if (!button) return;
+
+      const group = button.closest("[data-size-group]");
+      const min = Number(group.dataset.sizeMin);
+      const max = Number(group.dataset.sizeMax);
+      const size = Math.min(max, Math.max(min, Number(group.dataset.size) + Number(button.dataset.sizeStep)));
+      group.dataset.size = size;
+      group.style.setProperty("--group-size", `${size}px`);
+      group.querySelector("[data-group-size]").value = size;
+    });
 
     const syncControlsPanel = () => {
       controlsPanel.open = !compactControls.matches;
