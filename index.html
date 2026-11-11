@@ -213,17 +213,13 @@ greet("world");
 </code></pre>
         </div>
 
-        <div class="specimen-group code-group" data-size-group data-size="14" data-size-min="11" data-size-max="22">
+        <div class="specimen-group code-group" data-size-group data-size="12" data-size-min="11" data-size-max="22">
           <div class="size-control" aria-label="Coq sample size">
             <button type="button" data-size-step="-1" aria-label="Decrease Coq sample size">−</button>
-            <output data-group-size>14</output>
+            <output data-group-size>12</output>
             <button type="button" data-size-step="1" aria-label="Increase Coq sample size">+</button>
           </div>
           <pre data-shiki data-lang="coq"><code>From Coq Require Import ssreflect.
-
-(* ensure proofs are well-structured *)
-Set Default Goal Selector "!".
-#[global] Open Scope general_if_scope.
 
 (* Let's do a typical proof by induction:
     we'll define [list] as an inductive,
@@ -371,6 +367,10 @@ Qed.</code></pre>
     applyState(stateFromControls());
     controls.addEventListener("input", () => applyState(stateFromControls()));
 
+    for (const group of specimen.querySelectorAll("[data-size-group]")) {
+      group.style.setProperty("--group-size", `${group.dataset.size}px`);
+    }
+
     specimen.addEventListener("click", (event) => {
       const button = event.target.closest("[data-size-step]");
       if (!button) return;
@@ -393,14 +393,25 @@ Qed.</code></pre>
 
     const blocks = document.querySelectorAll("[data-shiki]");
 
-    import("https://esm.sh/shiki@4.2.0").then(async ({ codeToHtml }) => {
+    import("https://esm.sh/shiki@4.2.0").then(async ({ bundledThemes, codeToHtml }) => {
+      const githubLightModule = await bundledThemes["github-light"]();
+      const githubLight = githubLightModule.default ?? githubLightModule;
+      const theme = {
+        ...githubLight,
+        name: "lumen-light",
+        tokenColors: [
+          ...githubLight.tokenColors,
+          { scope: ["comment"], settings: { fontStyle: "italic" } },
+        ],
+      };
+
       for (const block of blocks) {
         const code = block.textContent.trim();
         const lang = block.dataset.lang || "text";
 
         block.outerHTML = await codeToHtml(code, {
           lang,
-          theme: "github-light",
+          theme,
         });
       }
     }).catch(() => { });
