@@ -441,7 +441,7 @@ a:hover {
   position: absolute;
   z-index: 1;
   top: 0.5rem;
-  right: 0;
+  right: 0.5rem;
   display: flex;
   align-items: center;
   border: 1px solid var(--line);
@@ -452,10 +452,6 @@ a:hover {
   font-style: normal;
   font-weight: 400;
   line-height: 1;
-}
-
-.code-group .size-control {
-  background: var(--code-bg);
 }
 
 .size-control button,
