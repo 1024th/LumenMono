@@ -433,6 +433,47 @@ a:hover {
   font-size: var(--group-size, 22px);
 }
 
+.reading-group {
+  margin: var(--space-md) 0;
+}
+
+.reading-sample {
+  font-size: var(--group-size, 14px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.specimen .reading-sample p {
+  margin: 0;
+  columns: 2;
+  column-fill: balance;
+  column-gap: var(--space-md);
+}
+
+.reading-sample cite {
+  display: block;
+  margin-top: var(--space-sm);
+  break-inside: avoid;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-style: italic;
+  text-align: right;
+}
+
+@media (hover: hover) {
+  .reading-group .size-control {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .reading-group:hover .size-control,
+  .reading-group:focus-within .size-control {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 .specimen p {
   margin: 0.5rem 0;
 }
@@ -636,5 +677,17 @@ footer p {
 
   h1 {
     font-size: 2.5rem;
+  }
+
+  .reading-group .size-control {
+    position: relative;
+    top: auto;
+    right: auto;
+    float: right;
+    margin-left: var(--space-xs);
+  }
+
+  .specimen .reading-sample p {
+    columns: 1;
   }
 }
