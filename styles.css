@@ -461,19 +461,6 @@ a:hover {
   text-align: right;
 }
 
-@media (hover: hover) {
-  .reading-group .size-control {
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  .reading-group:hover .size-control,
-  .reading-group:focus-within .size-control {
-    opacity: 1;
-    pointer-events: auto;
-  }
-}
-
 .specimen p {
   margin: 0.5rem 0;
 }
@@ -520,6 +507,40 @@ a:hover {
 .size-control output {
   border-right: 1px solid var(--line);
   border-left: 1px solid var(--line);
+}
+
+.size-control::before {
+  display: grid;
+  width: 1.75rem;
+  height: 1.5rem;
+  place-items: center;
+  font-family: sans-serif;
+  font-size: 1rem;
+  content: "☰";
+}
+
+.size-control:not(:hover):not(:focus-within) {
+  opacity: 0.55;
+}
+
+.size-control:not(:hover):not(:focus-within) > * {
+  display: none;
+}
+
+.size-control:hover::before,
+.size-control:focus-within::before {
+  display: none;
+}
+
+.size-control:hover,
+.size-control:focus-within {
+  color: var(--ink);
+  opacity: 1;
+}
+
+.size-control:focus-visible {
+  outline: 1px solid var(--ink);
+  outline-offset: 2px;
 }
 
 .specimen pre {
